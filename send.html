@@ -48,15 +48,15 @@
 		});
 		observer.observe({ entryTypes: ['paint'] });
 
-		new PerformanceObserver(entryList => {
-			for (let entry of entryList.getEntries()) {
-				counter.send('fid', entry.processingStart - entry.startTime)
+		new PerformanceObserver(list => {
+			for (let entry of list.getEntries()) {
+				counter.send('fid', list.processingStart - entry.startTime)
 			}
 		}).observe({type: 'first-input', buffered: true})
 
-		new PerformanceObserver(entryList => {
-			for (let entry of entryList.getEntries()) {
-				counter.send('lcp', entry.startTime)
+		new PerformanceObserver(list => {
+			for (let data of list.getEntries()) {
+				counter.send('lcp', list.startTime)
 			}
 		}).observe({type: 'largest-contentful-paint', buffered: true})
 
