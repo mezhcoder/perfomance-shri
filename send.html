@@ -39,6 +39,27 @@
 		//
 		counter.send('connect', performance.timing.connectEnd - performance.timing.connectStart);
 		counter.send('ttfb', performance.timing.responseEnd - performance.timing.requestStart);
+
+		const globalPerfArray = [];
+		const observer = new PerformanceObserver((list) => {
+			for (const entry of list.getEntries()) {
+				globalPerfArray.push(entry);
+			}
+		});
+		observer.observe({ entryTypes: ['paint'] });
+
+		new PerformanceObserver(entryList => {
+			for (let entry of entryList.getEntries()) {
+				counter.send('fid', entry.processingStart - entry.startTime)
+			}
+		}).observe({type: 'first-input', buffered: true})
+
+		new PerformanceObserver(entryList => {
+			for (let entry of entryList.getEntries()) {
+				counter.send('lcp', entry.startTime)
+			}
+		}).observe({type: 'largest-contentful-paint', buffered: true})
+
 		//
 		let timeStart = Date.now();
 		//
