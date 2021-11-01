@@ -16,4 +16,4 @@
 👩‍🚀 Мои контакты: https://t.me/zhcoder
 
 <h3>Screenshots</h3>
-<img src="https://user-images.githubusercontent.com/49750349/139694334-9fb3c6e2-ebc4-498c-a288-481140b1b041.png" width="100%" height="100%">
+<img src="https://user-images.githubusercontent.com/49750349/139694766-1e2fc161-ebb3-4fad-87f6-9448e1f208fe.png" width="100%" height="100%">
